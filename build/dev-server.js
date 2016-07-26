@@ -1,5 +1,6 @@
 var path = require('path')
 var express = require('express')
+var fs = require('fs')
 var webpack = require('webpack')
 var config = require('../config')
 var proxyMiddleware = require('http-proxy-middleware')
@@ -15,6 +16,23 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
+
+/**
+ * CRUD operations
+ */
+
+//get
+app.get('/api/posts', function(req, res) {
+  fs.readFile('./json/posts.json', function(err,data){
+    if (!err){
+      console.log(data)
+      res.send(JSON.parse(data))
+    }
+    else{
+      console.log(err)
+    }
+  })
+})
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
