@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import App from './App';
+import Vue from 'vue'
+import App from './App'
 
-import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 
 // We want to apply VueResource and VueRouter
 // to our Vue instance
@@ -11,16 +11,18 @@ Vue.use(VueRouter);
 
 import 'bootstrap/dist/css/bootstrap.css';
 
+window.$ = window.jQuery = require("jquery")
+
 const router = new VueRouter()
 
 
 router.map({
     '': {
-        name : 'posts',
+        name: 'posts',
         component: require('./components/posts.vue')
     },
     '/post/:id': {
-        name : 'post',
+        name: 'post',
         component: require('./components/single.vue')
     }
 })

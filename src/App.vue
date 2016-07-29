@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="text-center title">Tiny</h1>
+        <a class="title" v-link="{path : '/'}">Tiny</a>
         <button class="btn btn-primary pull-right">Add</button>
         <hr>
         <router-view></router-view>
@@ -17,5 +17,9 @@
 }
 .title{
   font-weight: bold;
+  font-size: 35px;
 }
+  button{
+    margin-top: 10px;
+  }
 </style>
