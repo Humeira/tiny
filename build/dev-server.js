@@ -17,6 +17,25 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+//
+
+var posts = []
+
+/**
+ *
+ * Read json file
+ */
+
+fs.readFile('./json/posts.json', function(err,data){
+  if (!err){
+    console.log(data)
+    posts = JSON.parse(data)
+  }
+  else{
+    console.log(err)
+  }
+})
+
 /**
  * CRUD operations
  */
@@ -27,6 +46,24 @@ app.get('/api/posts', function(req, res) {
     if (!err){
       console.log(data)
       res.send(JSON.parse(data))
+    }
+    else{
+      console.log(err)
+    }
+  })
+})
+
+//get one post
+
+app.get('/api/posts/:id', function(req, res) {
+  fs.readFile('./json/posts.json', function(err,data){
+    if (!err){
+      posts = JSON.parse(data)
+      for(var i = 0; i < posts.length; i++){
+        if(posts[i].id == req.params.id){
+          return res.send(posts[i])
+        }
+      }
     }
     else{
       console.log(err)
