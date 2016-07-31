@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <a class="title" v-link="{path : '/'}">Tiny</a>
-        <button class="btn btn-primary pull-right">Add</button>
+        <button v-if="$route.path!=='/new-post'" class="btn btn-primary pull-right" v-link="{path : '/new-post'}">Add new</button>
         <hr>
         <router-view></router-view>
       </div>

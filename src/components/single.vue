@@ -9,7 +9,7 @@
 <style scoped>
     img{
         display: block;
-        margin: 5px auto;
+        margin: 0 auto;
         border-radius: 50%;
     }
 </style>

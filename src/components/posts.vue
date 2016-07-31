@@ -8,7 +8,6 @@
 
         </article>
     </div>
-
 </template>
 <script>
     var myPosts = {all: []}
@@ -19,12 +18,10 @@
                 posts: myPosts
             }
         },
-
         ready: function () {
             /**
              * Getting data
              */
-
             $.get('api/posts', function (data) {
                 myPosts.all = data;
             })
