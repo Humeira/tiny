@@ -24,6 +24,10 @@ router.map({
     '/post/:id': {
         name: 'post',
         component: require('./components/single.vue')
+    },
+    'new-post/' :{
+        name: 'new-post',
+        component: require('./components/new-post.vue')
     }
 })
 
