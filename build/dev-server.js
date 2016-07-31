@@ -1,6 +1,7 @@
 var path = require('path')
 var express = require('express')
 var fs = require('fs')
+var bodyParser = require('body-parser')
 var webpack = require('webpack')
 var config = require('../config')
 var proxyMiddleware = require('http-proxy-middleware')
@@ -17,7 +18,11 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
-//
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(bodyParser.json())
+
 
 var posts = []
 
@@ -70,6 +75,16 @@ app.get('/api/posts/:id', function(req, res) {
     }
   })
 })
+
+//post
+
+app.post('/api/posts', function(req, res){
+    res.send('Post added')
+    posts.push(req.body)
+    var str = JSON.stringify(posts)
+    fs.writeFileSync('./json/posts.json', str)
+})
+
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
